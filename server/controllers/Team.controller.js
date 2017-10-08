@@ -30,5 +30,13 @@ module.exports = {
       status: true,
       team: team
     })
+  },
+  pushTeam: async (req, res) => {
+    let teamName = await req.params.team
+    let team = await Team.put(teamName)
+    res.json({
+      status: true,
+      team: team
+    })
   }
 }

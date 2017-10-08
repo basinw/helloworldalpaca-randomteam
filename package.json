@@ -17,7 +17,8 @@
     "react-scrolllock": "^1.0.9",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
-    "styled-components": "^2.2.1"
+    "styled-components": "^2.2.1",
+    "sweetalert2": "^6.10.2"
   },
   "scripts": {
     "start": "react-scripts start",

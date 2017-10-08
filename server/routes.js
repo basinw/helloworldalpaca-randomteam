@@ -4,7 +4,7 @@ const IdController = require('./controllers/Id.controller')
 const team = ["Front-End","Design","Game","Infra"]
 
 router.route('/id/reset').post(IdController.resetId)
-router.route('/id/all').get(IdController.getAll)
-router.route('/id/:id').get(IdController.getIdById)
+router.route('/id/:id').post(IdController.getIdById)
+router.route('/id').get(IdController.getAll)
 
 module.exports = router

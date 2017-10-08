@@ -38,9 +38,4 @@ var app = server.listen(3003, (err) => {
   console.log('> Ready on http://localhost:3003')
 })
 
-// socket.io
-const io = require('socket.io').listen(app)
-server.io = io
-require('./server/services/socket')(io)
-
 module.exports = server

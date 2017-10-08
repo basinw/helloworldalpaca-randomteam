@@ -41,7 +41,8 @@ const InputName = styled.input.attrs({
 class ChooseBox extends Component{
     state = {
         team : [],
-        name: ''
+        name: '',
+        
     }
 
     async componentWillMount() {
@@ -72,6 +73,9 @@ class ChooseBox extends Component{
                     html: `${name}, you got id number <div class="id-team">${data.id}</div>`,
                     type: 'success',
                     confirmButtonText: 'OK'
+                })
+                this.setState({
+                    items: [name, team, data.id]
                 })
             }else{
                 swal({

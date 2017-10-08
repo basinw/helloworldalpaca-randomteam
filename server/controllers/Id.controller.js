@@ -19,6 +19,11 @@ let members = {
   design: ['default'],
   infra: ['default']
 }
+const _BACKUP_MEMBERS = {
+  frontend: ['default'],
+  design: ['default'],
+  infra: ['default']
+}
 
 const team = ['FrontEnd', 'Design', 'Infra']
 
@@ -44,6 +49,7 @@ module.exports = {
     if (req.body.key === 'hellofrontend') {
       getCount = count
       count = _BACKUP
+      members = _BACKUP_MEMBERS
     } else {
       res.json({
         status: false,

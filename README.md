@@ -4,11 +4,7 @@
 ```
 yarn
 ```
-### Copy Environment File
-```
-cp .env.example .env
-```
-### Run FrontEnt
+### Run FrontEnd
 ```
 yarn start
 ```

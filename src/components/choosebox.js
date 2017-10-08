@@ -25,6 +25,17 @@ injectGlobal`
         background-color: #7b7ba4;
         border-color: #7b7ba4;
     }
+    .id-team {
+        font-size: 3em;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+`
+const InputName = styled.input.attrs({
+    type: 'text'
+})`
+    margin-bottom: 10px;
+    text-align: center;
 `
 
 class ChooseBox extends Component{
@@ -53,14 +64,14 @@ class ChooseBox extends Component{
             if(data.status && data.id !== undefined) {
                 swal({
                     title: 'Welcome to ``develop`` team',
-                    html: `${name}, you got id number <div style="font-size: 3em; font-weight: bold; margin-top: 10px;">${data.id}</div>`,
+                    html: `${name}, you got id number <div class="id-team">${data.id}</div>`,
                     type: 'success',
                     confirmButtonText: 'OK'
                 })
             }else{
                 swal({
                     title: 'Fail',
-                    text: `try again!`,
+                    text: `May be your selection team is full!`,
                     type: 'warning',
                     confirmButtonText: 'OK',
                 })
@@ -74,7 +85,7 @@ class ChooseBox extends Component{
         return(
             <div>
                 <Box>
-                    <input style={{ marginBottom: '10px', textAlign: 'center' }} type="text" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })}/>
+                    <InputName value={ this.state.name } onChange={ (e) => this.setState({ name: e.target.value }) } />
                     {
                         this.state.team.map(team => (
                             <button key={team} className="btn btn-outline-dark btn-block" onClick={()=>this.onClickBtn(team)}>{team}</button>

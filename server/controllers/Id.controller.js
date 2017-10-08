@@ -28,9 +28,9 @@ let setLimit = (team) => {
 
 module.exports = {
   resetId: async (req, res) => {
-    let allId, getCount
+    let getCount
     if (req.body.key === 'hellofrontend') {
-      allId = await Id.reset()
+      
       getCount = count
       count = _BACKUP
     } else {
@@ -41,7 +41,6 @@ module.exports = {
     }
     res.json({
       status: true,
-      id: allId,
       count: getCount
     })
   },
@@ -74,7 +73,7 @@ module.exports = {
       
       if (count[id] < _LIMIT) {
         count[id]++
-        resolveId = await Id.getOne(id - 1)
+        resolveId = id
 
         if (members[id] === undefined) {
           members[id] = [name]
@@ -102,10 +101,8 @@ module.exports = {
     }
   },
   getAll: async (req, res) => {
-    let id = await Id.getAll()
     res.json({
       count: count,
-      id: id,
       members: members
     })
   }

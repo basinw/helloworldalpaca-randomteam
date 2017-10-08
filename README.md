@@ -16,11 +16,19 @@ nodemon server
 ## Command for Deploy
 ### Install Dependencies !
 ```
-yarn *or* npm install
+yarn
+```
+**or**
+```
+npm install
 ```
 ### Build FrontEnd !
 ```
-yarn build *or* npm run build
+yarn build
+```
+**or**
+```
+npm run build
 ```
 ### Add Another command with PM2!
 ```

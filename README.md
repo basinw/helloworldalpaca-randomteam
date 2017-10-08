@@ -4,6 +4,10 @@
 ```
 yarn
 ```
+### Copy Environment File
+```
+cp .env.example .env
+```
 ### Run FrontEnt
 ```
 yarn start
@@ -29,6 +33,10 @@ yarn build
 **or**
 ```
 npm run build
+```
+### Copy Environment File
+```
+cp .env.example .env
 ```
 ### Add Another command with PM2!
 ```

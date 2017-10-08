@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import styled , {injectGlobal} from 'styled-components';
+import team from '../team.json'
 
 const Box = styled.div`
     position: fixed;
@@ -24,27 +25,32 @@ injectGlobal`
         border-color: #7b7ba4;
     }
 `
+
 class ChooseBox extends Component{
     state = {
-        team : ["Front-End","Design","Game","Infra"],
+        team : team.team,
         name: ''
     }
 
-    // async componentWillMount() {
-    //     let data = await fetch(`//localhost:3003/api/v1/all`)
-    //         .then(resp => resp.json())
-    //         .then(data => data) 
-    //     console.log(data)
-    // }
-
     onClickBtn = async (team) =>{
-        let teams = this.state.team
+        // let teams = this.state.team
         let name = this.state.name
-        let url = '//localhost:3003/api/v1/random/'
+        let rand = Math.floor(Math.random() * 10)
+        let url = '//localhost:3003/api/v1/id/'
         if(name.length < 3) {
             alert('please insert name more than 3 character!')
         }else{
-
+            url += rand
+            let data = await fetch(url)
+                .then(resp => resp.json())
+                .then(data => data)
+            console.log(data)
+            // let data = await fetch(url, {
+            //     method: 'post',
+            //     body: JSON.stringify(opts)
+            // })
+            //     .then(resp => resp.json())
+            //     .then(data => data)
         }
     }
     render(){
@@ -57,10 +63,6 @@ class ChooseBox extends Component{
                             <button key={team} className="btn btn-outline-dark btn-block" onClick={()=>this.onClickBtn(team)}>{team}</button>
                         ))
                     }
-                    {
-                        this.state.ip
-                    }
-                    
                 </Box>
             </div>
         );

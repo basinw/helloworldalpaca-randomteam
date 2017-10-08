@@ -1,6 +1,7 @@
 const Id = require('../models/Id.model')
 
-let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+// exception index 0
+let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 let members = []
 team = ["Front-End","Design","Game","Infra"]
 
@@ -32,6 +33,18 @@ module.exports = {
     } else {
       count[0]++
       resolveId = 0
+    }
+
+    if (resolveId === 0) {
+      res.json({
+        status: false,
+        message: 'index out of team!'
+      })
+    } else {
+      res.json({
+        status: true,
+        id: resolveId
+      })
     }
 
   },

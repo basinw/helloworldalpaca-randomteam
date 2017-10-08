@@ -3,7 +3,6 @@ import styled , {injectGlobal} from 'styled-components'
 import ScrollLock from 'react-scrolllock';
 import Particles from 'react-particles-js';
 import ChooseBox from './components/choosebox';
-import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 
 
 const Container = styled.div`
@@ -123,15 +122,6 @@ class App extends Component {
   //       document.onkeydown  = preventDefaultForScrollKeys;
   //   }
   // }
-
-  state = {
-  }
-
-
-  random = () =>{
-  }
-
-
   render() {
     return (
       <div>

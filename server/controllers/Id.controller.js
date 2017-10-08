@@ -1,5 +1,3 @@
-const Id = require('../models/Id.model')
-
 
 // LIMIT MEMBERS
 let _LIMIT = 3

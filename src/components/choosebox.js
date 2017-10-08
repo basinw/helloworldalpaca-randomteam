@@ -55,7 +55,12 @@ class ChooseBox extends Component{
     onClickBtn = async (team) =>{
         let name = this.state.name
         if(name.length < 3) {
-            alert('please insert name more than 3 character!')
+            swal({
+                title: 'Warning!',
+                text: 'please input name more than 3 characters!',
+                type: 'warning',
+                confirmButtonText: 'OK'
+            })
         }else{
             let data = await instance.post('/id', {
                 name: name,
@@ -73,7 +78,7 @@ class ChooseBox extends Component{
                     title: 'Fail',
                     text: `May be your selection team is full!`,
                     type: 'warning',
-                    confirmButtonText: 'OK',
+                    confirmButtonText: 'OK'
                 })
             }
         }

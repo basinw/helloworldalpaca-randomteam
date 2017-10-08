@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import styled , {injectGlobal} from 'styled-components';
 import team from '../team.json'
+import swal from 'sweetalert2'
 
 const Box = styled.div`
     position: fixed;
@@ -45,6 +46,21 @@ class ChooseBox extends Component{
                 .then(resp => resp.json())
                 .then(data => data)
             console.log(data)
+            if(data.status && data.id !== undefined) {
+                swal({
+                    title: 'Welcome to ``develop`` team',
+                    html: `${name}, you got id number <div style="font-size: 3em; font-weight: bold; margin-top: 10px;">${data.id}</div>`,
+                    type: 'success',
+                    confirmButtonText: 'OK'
+                })
+            }else{
+                swal({
+                    title: 'Fail',
+                    text: `try again!`,
+                    type: 'warning',
+                    confirmButtonText: 'OK',
+                })
+            }
             // let data = await fetch(url, {
             //     method: 'post',
             //     body: JSON.stringify(opts)

@@ -1,7 +1,12 @@
 const Id = require('../models/Id.model')
 
+<<<<<<< HEAD
 let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 const _BACKUP = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+=======
+// exception index 0
+let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+>>>>>>> master
 let members = []
 team = ["Front-End","Design","Game","Infra"]
 
@@ -33,6 +38,19 @@ module.exports = {
       count[0]++
       resolveId = 0
     }
+
+    if (resolveId === 0) {
+      res.json({
+        status: false,
+        message: 'index out of team!'
+      })
+    } else {
+      res.json({
+        status: true,
+        id: resolveId
+      })
+    }
+
   },
   getAll: async (req, res) => {
     let id = await Id.getAll()

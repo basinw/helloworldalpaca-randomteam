@@ -1,8 +1,7 @@
 const Id = require('../models/Id.model')
 
-// exception index 0
-let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 const _BACKUP = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 // LIMIT MEMBERS
@@ -30,7 +29,7 @@ let setLimit = (team) => {
 module.exports = {
   resetId: async (req, res) => {
     let allId, getCount
-    if (req.body.key==='hellofrontend') {
+    if (req.body.key === 'hellofrontend') {
       allId = await Id.reset()
       getCount = count
       count = _BACKUP
@@ -47,37 +46,59 @@ module.exports = {
     })
   },
   getIdById: async (req, res) => {
+    let team = req.body.team
+    let name = req.body.name
     let resolveId
-    let id = await +req.params.id
-    let team = await req.body.team
+    let id
+    let isFull = true
 
     await setLimit(team)
 
-    if (count[id]<_LIMIT) {
-      count[id]++
-      resolveId = await Id.getOne(id-1)
-      
-      if (members[id]!=undefined) {
-        members[id].push(req.body.name)
-      } else {
-        members[id] = [req.body.name];
+    for (let i = 1; i <= 10; i++) {
+      if (count[i] < 3) {
+        isFull = false
+        break
       }
-
-    } else {
-      count[0]++
-      resolveId = 0
     }
 
-    if (resolveId === 0) {
+    if (isFull) {
       res.json({
         status: false,
-        message: 'index out of team!'
+        message: 'Error, Team is Full!'
       })
     } else {
-      res.json({
-        status: true,
-        id: resolveId
-      })
+      
+      do {
+        id = Math.floor(Math.random() * 10) + 1
+      } while (count[id] >= _LIMIT)
+      
+      if (count[id] < _LIMIT) {
+        count[id]++
+        resolveId = await Id.getOne(id - 1)
+
+        if (members[id - 1] === undefined) {
+          members[id -1] = [name]
+        } else {
+          members[id -1].push(name)
+        }
+
+      } else {
+        count[0]++
+        resolveId = 0
+      }
+
+      if (resolveId === 0) {
+        res.json({
+          status: false,
+          message: 'Error, Index out of team!'
+        })
+      } else {
+        res.json({
+          status: true,
+          id: resolveId
+        })
+      }
+
     }
   },
   getAll: async (req, res) => {

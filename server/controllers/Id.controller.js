@@ -69,9 +69,9 @@
          count[id]++
            resolveId = await Id.getOne(id - 1)
          if (members[id] === undefined) {
-           members[id] = [name]
+           members[id] = [`${name} - ${team}`]
          } else {
-           members[id].push(name)
+           members[id].push(`${name} - ${team}`)
          }
        } else {
          count[0]++

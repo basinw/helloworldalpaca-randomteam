@@ -3,7 +3,7 @@ const Team = require('../models/Team.model')
 let team
 
 module.exports = {
-  reset: async (req, res) => {
+  resetTeam: async (req, res) => {
     if (req.body.key === 'hellofrontend') {
       team = await Team.reset()
     } else {
@@ -25,7 +25,14 @@ module.exports = {
   },
   addTeam: async (req, res) => {
     let teamName = await req.params.team
-    let team = await Team.add(teamName)
+    if (req.body.key === 'hellofrontend') {
+      team = await Team.add(teamName)
+    } else {
+      res.json({
+        status: false,
+        message: 'error, add team failed.'
+      })
+    }
     res.json({
       status: true,
       team: team
@@ -33,10 +40,21 @@ module.exports = {
   },
   pushTeam: async (req, res) => {
     let teamName = await req.params.team
-    let team = await Team.put(teamName)
+    if (req.body.key === 'hellofrontend') {
+      team = await Team.put(teamName)
+    }
     res.json({
       status: true,
       team: team
     })
-  }
+  },
+  setAll: async (req, res) => {
+    if (req.body.key === 'hellofrontend') {
+      team = await Team.setAll()
+    }
+    res.json({
+      status: true,
+      team: team
+    })
+  },
 }

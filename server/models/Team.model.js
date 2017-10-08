@@ -1,6 +1,5 @@
 // init Team
 let TEAM = ['FrontEnd']
-TEAM = ['FrontEnd', 'Design', 'Infra']
 const _RESET = ['FrontEnd']
 const _BACKUP = ['FrontEnd', 'Design', 'Infra']
 
@@ -10,7 +9,7 @@ let getAll = () => {
 
 module.exports = {
   add: args => {
-    return new Promise( async (res, rej) => {
+    return new Promise(async (res, rej) => {
       try {
         TEAM.push(args)
         res(TEAM)
@@ -20,7 +19,7 @@ module.exports = {
     })
   },
   getAll: () => {
-    return new Promise( async (res, rej) => {
+    return new Promise(async (res, rej) => {
       try {
         let team = await getAll()
         res(team)
@@ -30,7 +29,7 @@ module.exports = {
     })
   },
   reset: () => {
-    return new Promise( async (res, rej) => {
+    return new Promise(async (res, rej) => {
       try {
         TEAM = _RESET
         res(TEAM)

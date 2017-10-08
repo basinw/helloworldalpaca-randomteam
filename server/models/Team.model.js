@@ -37,5 +37,15 @@ module.exports = {
         rej(error)
       }
     })
+  },
+  put: args => {
+    return new Promise(async (res, rej) => {
+      try {
+        TEAM = [args]
+        res(TEAM)
+      } catch (error) {
+        rej(error)
+      }
+    })
   }
 }

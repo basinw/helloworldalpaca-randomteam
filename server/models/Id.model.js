@@ -1,5 +1,5 @@
 // init ID
-const ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const _BACKUP = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 let getId = args => {
@@ -32,11 +32,11 @@ module.exports = {
       }
     })
   },
-  getAll: args => {
+  getAll: () => {
     return new Promise( async (res, rej) => {
       try {
-        let data = head.frontEnd
-        res(data)
+        let id = ID
+        res(ID)
       } catch (error) {
         rej(error)
       }

@@ -3,7 +3,6 @@ import styled , {injectGlobal} from 'styled-components'
 import ScrollLock from 'react-scrolllock';
 import Particles from 'react-particles-js';
 import ChooseBox from './components/choosebox';
-import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 
 
 const Container = styled.div`
@@ -97,41 +96,12 @@ class App extends Component {
     return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
   }
   
-  componentWillUnmount() {
-  }
-  
   componentDidMount() {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-      // Take the user to a different screen here.
       const windowHeight = window.innerHeight-144;
       document.body.style.height = windowHeight;
     }
-    
-    // const scene = document.getElementById('scene');
-    // const parallaxInstance = new Parallax(scene);
-    // particlesJS.load('particles-js', './static/js/particlesjs-config.json', function() {
-    //   console.log('callback - particles.js config loaded');
-    // });
-    // parallaxInstance.friction(0.2, 0.2);
   }
-  // disableScroll = () => {
-  //   if (window.addEventListener) { // older FF
-  //       window.addEventListener('DOMMouseScroll', preventDefault, false);
-  //       window.onwheel = preventDefault; // modern standard
-  //       window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-  //       window.ontouchmove  = preventDefault; // mobile
-  //       document.onkeydown  = preventDefaultForScrollKeys;
-  //   }
-  // }
-
-  state = {
-  }
-
-
-  random = () =>{
-  }
-
-
   render() {
     return (
       <div>

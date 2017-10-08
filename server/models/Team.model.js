@@ -1,32 +1,18 @@
-// init ID
-let ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const _BACKUP = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-let getId = args => {
-  return ID[args]
-}
+// init Team
+let TEAM = ['FrontEnd']
+const _RESET = ['FrontEnd']
+const _BACKUP = ['FrontEnd', 'Design', 'Infra']
 
 let getAll = () => {
-  return ID
+  return TEAM
 }
 
 module.exports = {
-  reset: () => {
+  add: args => {
     return new Promise( async (res, rej) => {
       try {
-        ID = _BACKUP
-        let allId = await getAll()
-        res(allId)
-      } catch (error) {
-        rej(error)
-      }
-    })
-  },
-  getOne: args => {
-    return new Promise( async (res, rej) => {
-      try {
-        let id = await getId(args)
-        res(id)
+        TEAM.push(args)
+        res(TEAM)
       } catch (error) {
         rej(error)
       }
@@ -35,8 +21,18 @@ module.exports = {
   getAll: () => {
     return new Promise( async (res, rej) => {
       try {
-        let id = ID
-        res(ID)
+        let team = await getAll()
+        res(team)
+      } catch (error) {
+        rej(error)
+      }
+    })
+  },
+  reset: () => {
+    return new Promise( async (res, rej) => {
+      try {
+        TEAM = _RESET
+        res(TEAM)
       } catch (error) {
         rej(error)
       }

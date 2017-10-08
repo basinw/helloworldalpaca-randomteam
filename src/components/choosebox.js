@@ -63,7 +63,7 @@ class ChooseBox extends Component{
             }).then(res => res.data)
             if(data.status && data.id !== undefined) {
                 swal({
-                    title: 'Welcome to ``develop`` team',
+                    title: 'Welcome to ``'+team+'`` team',
                     html: `${name}, you got id number <div class="id-team">${data.id}</div>`,
                     type: 'success',
                     confirmButtonText: 'OK'

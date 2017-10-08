@@ -1,5 +1,6 @@
 // init Team
 let TEAM = ['FrontEnd']
+TEAM = ['FrontEnd', 'Design', 'Infra']
 const _RESET = ['FrontEnd']
 const _BACKUP = ['FrontEnd', 'Design', 'Infra']
 

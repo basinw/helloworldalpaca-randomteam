@@ -1,23 +1,35 @@
 const Id = require('../models/Id.model')
 
 
-let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-const _BACKUP = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
 // LIMIT MEMBERS
 let _LIMIT = 3
-let members = ['default']
+let count = {
+  frontend: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  design: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  infra: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+const _BACKUP = {
+  frontend: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  design: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  infra: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+let members = {
+  frontend: ['default'],
+  design: ['default'],
+  infra: ['default']
+}
 
 const team = ['FrontEnd', 'Design', 'Infra']
 
 let setLimit = (team) => {
   switch (team) {
-    case 'FrontEnd':
+    case 'frontend':
       _LIMIT = 3;
       break;
-    case 'Design':
+    case 'design':
       _LIMIT = 1;
-    case 'Infra':
+    case 'infra':
       _LIMIT = 1;
       break;
     default:
@@ -30,7 +42,6 @@ module.exports = {
   resetId: async (req, res) => {
     let getCount
     if (req.body.key === 'hellofrontend') {
-      
       getCount = count
       count = _BACKUP
     } else {
@@ -47,6 +58,15 @@ module.exports = {
   getIdById: async (req, res) => {
     let team = req.body.team
     let name = req.body.name
+    if(team === undefined || name === undefined){
+      res.json({
+        status: false,
+        message: 'request parameter not found!'
+      })
+      return
+    }
+    name = name.trim()
+    team = team.toLowerCase()
     let resolveId
     let id
     let isFull = true
@@ -54,7 +74,7 @@ module.exports = {
     await setLimit(team)
 
     for (let i = 1; i <= 10; i++) {
-      if (count[i] < 3) {
+      if (count[team][i] < _LIMIT) {
         isFull = false
         break
       }
@@ -69,20 +89,20 @@ module.exports = {
       
       do {
         id = Math.floor(Math.random() * 10) + 1
-      } while (count[id] >= _LIMIT)
+      } while (count[team][id] >= _LIMIT)
       
-      if (count[id] < _LIMIT) {
-        count[id]++
+      if (count[team][id] < _LIMIT) {
+        count[team][id]++
         resolveId = id
 
-        if (members[id] === undefined) {
-          members[id] = [name]
+        if (members[team][id] === undefined) {
+          members[team][id] = [name]
         } else {
-          members[id].push(name)
+          members[team][id].push(name)
         }
 
       } else {
-        count[0]++
+        count[team][0]++
         resolveId = 0
       }
 

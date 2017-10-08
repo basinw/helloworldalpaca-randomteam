@@ -1,7 +1,5 @@
 // init Team
 let TEAM = []
-const _RESET = []
-const _BACKUP = ['FrontEnd', 'Design', 'Infra']
 
 let getAll = () => {
   return TEAM
@@ -31,7 +29,8 @@ module.exports = {
   reset: () => {
     return new Promise(async (res, rej) => {
       try {
-        TEAM = _RESET
+        TEAM = []
+        console.log(TEAM)
         res(TEAM)
       } catch (error) {
         rej(error)
@@ -51,7 +50,7 @@ module.exports = {
   setAll: () => {
     return new Promise(async (res, rej) => {
       try {
-        TEAM = _BACKUP
+        TEAM = ['FrontEnd', 'Design', 'Infra']
         res(TEAM)
       } catch (error) {
         rej(error)

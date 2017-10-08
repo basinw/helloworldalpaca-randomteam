@@ -76,10 +76,10 @@ module.exports = {
         count[id]++
         resolveId = await Id.getOne(id - 1)
 
-        if (members[id - 1] === undefined) {
-          members[id -1] = [name]
+        if (members[id] === undefined) {
+          members[id] = [name]
         } else {
-          members[id -1].push(name)
+          members[id].push(name)
         }
 
       } else {

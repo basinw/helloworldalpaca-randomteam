@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
 import styled , {injectGlobal} from 'styled-components';
-import team from '../team.json'
 import swal from 'sweetalert2'
 import instance from '../libs/axios'
 
@@ -30,22 +29,27 @@ injectGlobal`
 
 class ChooseBox extends Component{
     state = {
-        team : team.team,
+        team : [],
         name: ''
+    }
+
+    async componentWillMount() {
+        let team = await instance.get('/team')
+            .then(res => res.data)
+        this.setState({
+            team: team.team
+        })
     }
     
     onClickBtn = async (team) =>{
-        // let teams = this.state.team
         let name = this.state.name
-        let rand = Math.floor(Math.random() * 10)
         if(name.length < 3) {
             alert('please insert name more than 3 character!')
         }else{
-            let data = await instance.post('/id/'+rand, {
+            let data = await instance.post('/id', {
                 name: name,
-                test: 'tset'
+                team: team
             }).then(res => res.data)
-            console.log(data)
             if(data.status && data.id !== undefined) {
                 swal({
                     title: 'Welcome to ``develop`` team',
@@ -62,6 +66,9 @@ class ChooseBox extends Component{
                 })
             }
         }
+        this.setState({
+            name: ''
+        })
     }
     render(){
         return(

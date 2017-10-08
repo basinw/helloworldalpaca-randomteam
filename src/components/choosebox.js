@@ -31,7 +31,7 @@ class ChooseBox extends Component{
         team : team.team,
         name: ''
     }
-
+    
     onClickBtn = async (team) =>{
         // let teams = this.state.team
         let name = this.state.name

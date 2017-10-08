@@ -95,6 +95,7 @@ class ChooseBox extends Component{
             <div>
                 <Box>
                     <InputName value={ this.state.name } onChange={ (e) => this.setState({ name: e.target.value }) } />
+                    <input type="hidden" value={this.state.items}/>
                     {
                         this.state.team.map(team => (
                             <button key={team} className="btn btn-outline-dark btn-block" onClick={()=>this.onClickBtn(team)}>{team}</button>
